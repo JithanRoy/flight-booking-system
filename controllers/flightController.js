@@ -2,6 +2,7 @@ const Flight = require('../models/Flight');
 
 const getFlights = async (req, res) => {
     try {
+        console.log('trying to get all the users');
         const flights = await Flight.find();
         res.json(flights);
     } catch (err) {
