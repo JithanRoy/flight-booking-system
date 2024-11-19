@@ -20,4 +20,54 @@ const searchFlights = async (req, res) => {
     }
 };
 
-module.exports = { getFlights, searchFlights };
+// controllers/flightController.js
+
+const getFlightById = async (req, res) => {
+  try {
+    const flight = await Flight.findById(req.params.id);
+    if (!flight) return res.status(404).json({ message: 'Flight not found' });
+    res.json(flight);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const addFlight = async (req, res) => {
+    const { flightNumber, airline, origin, destination, date, time, price, availableSeats } = req.body;
+
+    console.log('Request body:', req.body); // Log the request body
+  debugger;
+
+    try {
+        const flight = new Flight({ flightNumber, airline, origin, destination, date, time, price, availableSeats });
+        await flight.save();
+
+        res.status(201).json({ message: 'Flight added successfully', flight });
+    } catch (err) {
+        console.error('Error in addFlight:', err); // Log the error
+        res.status(400).json({ error: err.message });
+    }
+};
+
+
+exports.updateFlight = async (req, res) => {
+  try {
+    const flight = await Flight.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!flight) return res.status(404).json({ message: 'Flight not found' });
+    res.json(flight);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+exports.deleteFlight = async (req, res) => {
+  try {
+    const flight = await Flight.findByIdAndDelete(req.params.id);
+    if (!flight) return res.status(404).json({ message: 'Flight not found' });
+    res.json({ message: 'Flight deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { getFlights, searchFlights, addFlight, getFlightById };
