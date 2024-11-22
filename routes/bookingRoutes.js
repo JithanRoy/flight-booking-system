@@ -10,7 +10,7 @@ const {
   deleteBooking,
 } = require('../controllers/bookingController');
 
-// router.post('/', authenticate, createBooking);
+router.post('/', authenticate, createBooking);
 // router.get('/user/:id', authenticate, getUserBookings);
 // router.get('/', authenticate, adminOnly, getAllBookings);
 // router.put('/:id', authenticate, adminOnly, updateBooking);

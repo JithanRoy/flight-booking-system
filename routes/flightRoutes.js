@@ -15,7 +15,7 @@ router.get('/', getFlights);
 router.get('/search', searchFlights);
 router.get('/:id',(req, res) =>  getFlightById(req, res));
 router.post('/', (req, res)=> addFlight(req, res));
-// router.put('/:id', authenticate, adminOnly, updateFlight);
-// router.delete('/:id', authenticate, adminOnly, deleteFlight);
+router.put('/:id', (req, res) => updateFlight(req, res));
+router.delete('/:id', (req, res) => deleteFlight(req, res));
 
 module.exports = router;

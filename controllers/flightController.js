@@ -50,7 +50,7 @@ const addFlight = async (req, res) => {
 };
 
 
-exports.updateFlight = async (req, res) => {
+const updateFlight = async (req, res) => {
   try {
     const flight = await Flight.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!flight) return res.status(404).json({ message: 'Flight not found' });
@@ -60,7 +60,7 @@ exports.updateFlight = async (req, res) => {
   }
 };
 
-exports.deleteFlight = async (req, res) => {
+const deleteFlight = async (req, res) => {
   try {
     const flight = await Flight.findByIdAndDelete(req.params.id);
     if (!flight) return res.status(404).json({ message: 'Flight not found' });
@@ -70,4 +70,4 @@ exports.deleteFlight = async (req, res) => {
   }
 };
 
-module.exports = { getFlights, searchFlights, addFlight, getFlightById };
+module.exports = { getFlights, searchFlights, addFlight, getFlightById, updateFlight , deleteFlight };

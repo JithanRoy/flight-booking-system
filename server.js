@@ -4,6 +4,7 @@ const connectDB = require('./config/db.js');
 const userRoutes = require('./routes/authRoutes');
 const flightRoutes = require('./routes/flightRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const cors = require('cors');
 
 const app = express();
 // Load environment variables
@@ -12,6 +13,12 @@ dotenv.config();
 // Connect to MongoDB
 
 connectDB();
+app.use(cors({
+    origin: "http://localhost:5173/",
+    headers: ["Content-Type"],
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use('/api', userRoutes);
 app.use('/api/flights', flightRoutes);
