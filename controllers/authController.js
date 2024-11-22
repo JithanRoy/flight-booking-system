@@ -1,4 +1,4 @@
-// controllers/authController.js
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -9,18 +9,17 @@ exports.register = async (req, res) => {
   try {
     console.log('Register route hit');
 
-    // Validate role
+
     if (!['admin', 'user'].includes(role)) {
       return res.status(400).json({ error: 'Invalid role. Role must be either "admin" or "user".' });
     }
 
-    // Hash the password
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
+
     const user = new User({ username, email, password: hashedPassword, role });
 
-    // Save the user to the database
     await user.save();
 
     res.status(201).json({ message: 'User registered successfully', user: { username, email, role } });

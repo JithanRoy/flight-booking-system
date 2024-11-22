@@ -7,10 +7,8 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const cors = require('cors');
 
 const app = express();
-// Load environment variables
 
 dotenv.config();
-// Connect to MongoDB
 
 connectDB();
 app.use(cors());

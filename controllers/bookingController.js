@@ -1,4 +1,4 @@
-// controllers/bookingController.js
+
 const Booking = require('../models/Booking');
 const Flight = require('../models/Flight');
 

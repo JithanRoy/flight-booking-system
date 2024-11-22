@@ -20,8 +20,6 @@ const searchFlights = async (req, res) => {
     }
 };
 
-// controllers/flightController.js
-
 const getFlightById = async (req, res) => {
   try {
     const flight = await Flight.findById(req.params.id);
@@ -35,7 +33,7 @@ const getFlightById = async (req, res) => {
 const addFlight = async (req, res) => {
     const { flightNumber, airline, origin, destination, date, time, price, availableSeats } = req.body;
 
-    console.log('Request body:', req.body); // Log the request body
+    console.log('Request body:', req.body);
   debugger;
 
     try {
@@ -44,7 +42,7 @@ const addFlight = async (req, res) => {
 
         res.status(201).json({ message: 'Flight added successfully', flight });
     } catch (err) {
-        console.error('Error in addFlight:', err); // Log the error
+        console.error('Error in addFlight:', err);
         res.status(400).json({ error: err.message });
     }
 };
