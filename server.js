@@ -13,11 +13,7 @@ dotenv.config();
 // Connect to MongoDB
 
 connectDB();
-app.use(cors({
-    origin: "http://localhost:5173/",
-    headers: ["Content-Type"],
-    credentials: true,
-}));
+app.use(cors());
 
 app.use(express.json());
 app.use('/api', userRoutes);
