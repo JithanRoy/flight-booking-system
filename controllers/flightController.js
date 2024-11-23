@@ -31,13 +31,14 @@ const getFlightById = async (req, res) => {
 };
 
 const addFlight = async (req, res) => {
+    const uuid = crypto.randomUUID();
     const { flightNumber, airline, origin, destination, date, time, price, availableSeats } = req.body;
 
     console.log('Request body:', req.body);
   debugger;
 
     try {
-        const flight = new Flight({ flightNumber, airline, origin, destination, date, time, price, availableSeats });
+        const flight = new Flight({ id:uuid, flightNumber, airline, origin, destination, date, time, price, availableSeats });
         await flight.save();
 
         res.status(201).json({ message: 'Flight added successfully', flight });
