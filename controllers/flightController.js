@@ -35,7 +35,6 @@ const addFlight = async (req, res) => {
     const { flightNumber, airline, origin, destination, date, time, price, availableSeats } = req.body;
 
     console.log('Request body:', req.body);
-  debugger;
 
     try {
         const flight = new Flight({ id:uuid, flightNumber, airline, origin, destination, date, time, price, availableSeats });
@@ -50,8 +49,9 @@ const addFlight = async (req, res) => {
 
 
 const updateFlight = async (req, res) => {
+  console.log('res', req.params.id);
   try {
-    const flight = await Flight.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const flight = await Flight.findByIdAndUpdate(req.params.id , req.body, { new: true });
     if (!flight) return res.status(404).json({ message: 'Flight not found' });
     res.json(flight);
   } catch (err) {
